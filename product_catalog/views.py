@@ -20,7 +20,7 @@ class ProductCatalogView(viewsets.ModelViewSet):
 	lookup_field = 'slug'
 
 	def get_queryset(self):
-		queryset = ProductCatalog.objects.filter(available=True)
+		queryset = ProductCatalog.objects.filter(available=True).order_by('-id')
 		return queryset
 
 
@@ -31,7 +31,7 @@ class ProductAttributeView(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		product_slug = self.kwargs.get('slug')
-		queryset = ProductAttribute.objects.filter(product__slug=product_slug)
+		queryset = ProductAttribute.objects.filter(product__slug=product_slug).order_by('-id')
 		return queryset
 
 	def create(self, request, *args, **kwargs):
@@ -56,7 +56,7 @@ class ProductPriceView(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		product_slug = self.kwargs.get('slug')
-		queryset = ProductPrice.objects.filter(product__slug=product_slug)
+		queryset = ProductPrice.objects.filter(product__slug=product_slug).order_by('-id')
 		return queryset
 
 	def create(self, request, *args, **kwargs):

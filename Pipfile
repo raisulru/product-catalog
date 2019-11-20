@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
+factory_boy = "==2.12.0"
+Faker = "==2.0.4"
 
 [requires]
 python_version = "3.7"
