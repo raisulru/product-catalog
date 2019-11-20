@@ -38,9 +38,22 @@ class ProductPriceSerializer(serializers.ModelSerializer):
 		model = ProductPrice
 		fields = [
 			'id',
+			'product',
 			'price',
 			'from_date',
 			'to_date'
 		]
 
-		read_only_fields = ['id']
+		read_only_fields = ['id', 'product']
+
+
+class ProductPriceCreateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = ProductPrice
+		fields = [
+			'product',
+			'price',
+			'from_date',
+			'to_date'
+		]
