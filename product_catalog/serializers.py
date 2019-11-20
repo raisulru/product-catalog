@@ -2,22 +2,6 @@ from rest_framework import serializers
 from .models import ProductCatalog, ProductAttribute, ProductPrice
 
 
-class ProductCatalogSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = ProductCatalog
-		fields = [
-			'id',
-			'name',
-			'slug',
-			'available',
-			'code',
-			'description'
-		]
-
-		read_only_fields = ['id']
-
-
 class ProductAttributeSerializer(serializers.ModelSerializer):
 
 	class Meta:
@@ -29,7 +13,7 @@ class ProductAttributeSerializer(serializers.ModelSerializer):
 			'size'
 		]
 
-		read_only_fields = ['id']
+		read_only_fields = ['id', 'product']
 
 
 class ProductPriceSerializer(serializers.ModelSerializer):
@@ -47,13 +31,22 @@ class ProductPriceSerializer(serializers.ModelSerializer):
 		read_only_fields = ['id', 'product']
 
 
-class ProductPriceCreateSerializer(serializers.ModelSerializer):
+class ProductCatalogSerializer(serializers.ModelSerializer):
+	product_attributes = ProductAttributeSerializer(many=True, read_only=True)
+	product_prices = ProductPriceSerializer(many=True, read_only=True)
 
 	class Meta:
-		model = ProductPrice
+		model = ProductCatalog
 		fields = [
-			'product',
-			'price',
-			'from_date',
-			'to_date'
+			'id',
+			'name',
+			'slug',
+			'available',
+			'product_attributes',
+			'product_prices',
+			'code',
+			'description'
 		]
+
+		read_only_fields = ['id']
+
