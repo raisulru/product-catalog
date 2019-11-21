@@ -27,4 +27,4 @@ It's include product list with its multiple attributes and multiple prices for d
 - For api documentation visit `http://0.0.0.0:8000/doc/` after running the server.
 
 # Runing with docker
-- Just run `docker compose up`. (Make sure you have docker installed in your machine)
+- Just run `docker-compose up`. (Make sure you have docker installed in your machine)
